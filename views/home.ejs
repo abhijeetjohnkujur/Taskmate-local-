@@ -16,7 +16,9 @@
 
     <!-- Input container -->
     <div class="flex justify-center py-4 my-10">
-        <form class="flex w-1/2 flex-col shadow-md rounded-lg p-12 border">
+        <form class="flex w-1/2 flex-col shadow-md rounded-lg p-12 border"
+        action="/add-todo" method="post"
+        >
 
             <!-- input container 1 -->
             <div class="p-2 shadow-lg rounded-lg">
@@ -29,7 +31,7 @@
             <div class="flex justify-center gap-2 py-5 px-1">
             <div class="w-2/4">
                 <label class="font-semibold bg-black text-white px-2 py-1 rounded-r-lg" for="category">Category</label>
-                <select class="rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline font-semibold placeholder:opacity-35 border-b-2" id="category" name="category">
+                <select class="rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline font-semibold placeholder:opacity-35 border-b-2" id="category" name="category" required>
                     <option value="cc">Choose a category</option>
                     <option value="Personal">Personal</option>
                     <option value="Work">Work</option>
@@ -51,9 +53,9 @@
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-[100px]" type="submit">
                 <i class="fa-solid fa-pen-to-square"></i>
                 Add</button>
-            <button class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-[100px]" type="submit">
+            <button class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-[100px]">
                 <i class="fa-solid fa-trash"></i>
-                Delete</button>
+                <a href="">Delete</a></button>
             </div>
 
         </form>    
