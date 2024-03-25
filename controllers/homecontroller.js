@@ -1,13 +1,14 @@
 const todoList = require('../models/todo')
+const formatedDate = require('../utils/date_function')
 
 // Home controller + View Tasks
 module.exports.home = (req, res) => {
     todoList.find()
         .then(result => {
-            console.log(result)
+            // console.log(result)
             return res.render('home', {
             title: "TaskMate | TodoList App",
-            tasks: result
+            tasks: result,
             })
         })
         .catch(err => {
@@ -23,10 +24,12 @@ module.exports.addTodo = (req, res) => {
         category,
         duedate
     } = req.body
+    
+    const formatedduedate = formatedDate(duedate)
     todoList.create({
             task,
             category,
-            duedate
+            duedate: formatedduedate
         })
         .then(result => {
             console.log(result)
