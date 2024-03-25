@@ -2,6 +2,12 @@ const express = require("express");
 const app = express();
 const port = 8000;
 
+// Setting up the database
+const db = require('./config/mongoose')
+
+// Setting up the body-parser
+app.use(express.urlencoded({extended: true}))
+
 // Setting up the root route
 app.use('/', require('./routes/index'))
 
