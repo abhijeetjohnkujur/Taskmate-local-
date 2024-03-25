@@ -61,23 +61,26 @@
         </form>    
     </div>
 
+
     <!-- Task container -->
     <div class="flex justify-center my-4">
+        <% tasks.map((task) => {%>
         <div class="w-1/2">
             <div class="shadow-md p-4 rounded-lg" id="tasks">
                 <div class="w-full flex items-center">
                     <input type="checkbox" name="taskcheck" class="border-none mr-2"/>
-                    <p class="font-semibold text-gray-600">Help people</p>
-                    <div class="ml-auto mr-4 bg-fuchsia-500 text-white py-2 px-4 font-semibold rounded-full shadow-md">WORK</div>
+                    <p class="font-semibold text-gray-600"><%= task.task %></p>
+                    <div class="ml-auto mr-4 bg-fuchsia-500 text-white py-2 px-4 font-semibold rounded-full shadow-md"><%= task.category %></div>
                 </div>
                 <div>
                     <p class="text-gray-500 font-semibold">
                     <i class="fa-regular fa-calendar-days"></i>
-                    MAY 2, 2024
+                    <%= task.duedate %>
                     </p>
                 </div>
             </div>   
         </div>  
+        <%})%>
     </div>
 
     </body>
