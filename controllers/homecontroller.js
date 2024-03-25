@@ -6,11 +6,13 @@ module.exports.home = (req,res) => {
     })
 }
 
+// Add Task controller
 module.exports.addTodo = (req,res) => {
+    const {task, category, duedate} = req.body
     todoList.create({
-        task: req.body.task,
-        category: req.body.category,
-        duedate: req.body.duedate
+        task,
+        category,
+        duedate
     })
     .then(result => {
         console.log(result)
