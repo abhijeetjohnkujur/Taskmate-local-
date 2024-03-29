@@ -1,5 +1,5 @@
 const formatedDate = (duedate) => {
-    const inputDate = new Date(duedate);  // Assuming 'duedate' comes from your form data
+    const inputDate = new Date(duedate);  // Taking due date as input
 
 const formattedDate = inputDate.toLocaleDateString('en-US', {
     month: 'long', 
