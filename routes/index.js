@@ -1,14 +1,17 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 
-//controllers
-const homecontroller = require('../controllers/homecontroller')
+// Controllers
+const homecontroller = require('../controllers/homecontroller');
 
 // Home Page Route
-router.get('/', homecontroller.home)
+router.get('/', homecontroller.home);
 
 // Add Task Route
-router.post('/add-todo', homecontroller.addTodo)
+router.post('/add-todo', homecontroller.addTodo);
+
+// Delete single Task Route
+router.get('/delete-todo/:id', homecontroller.deleteTodo);
 
 
-module.exports = router
+module.exports = router;

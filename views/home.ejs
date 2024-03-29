@@ -9,79 +9,85 @@
         <link rel="icon" type="image/x-icon" href="/favicons/todo.png">
     </head>
     <body>
-    <!-- Heading container -->
-    <div class="flex justify-center py-2">
-        <h1 class="text-4xl font-bold bg-red-600 text-white px-2 rounded-lg shadow-md py-1 tracking-wide"><a href="/">TaskMate</a></h1>
-    </div>
+        <!-- Heading container -->
+        <div class="flex justify-center py-2">
+            <h1 class="text-4xl font-bold bg-red-600 text-white px-2 rounded-lg shadow-md py-1 tracking-wide"><a href="/">TaskMate</a></h1>
+        </div>
 
-    <!-- Input container -->
-    <div class="flex justify-center py-4 my-10">
-        <form class="flex w-1/2 flex-col shadow-md rounded-lg p-12 border"
-        action="/add-todo" method="post"
-        >
+        <!-- Input container -->
+        <div class="flex justify-center py-4 my-10">
+            <form class="flex md:w-1/2 flex-col shadow-md rounded-lg p-4 md:p-12" action="/add-todo" method="post">
+                <!-- input container 1 -->
+                <div class="p-2 shadow-lg rounded-lg">
+                    <label class="font-semibold bg-black text-white px-2 py-1 rounded-r-lg" for="task">Task Description</label>
+                    <input class="appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline font-semibold placeholder:opacity-35 border-b-2" id="task" type="text" name="task" placeholder="Enter task..." required>
+                </div>
+                
+                <!-- input container 2 -->
+                <div class="flex justify-center gap-2 py-5 px-1">
+                    <div class="md:w-2/4">
+                        <label class="font-semibold bg-black text-white px-2 py-1 rounded-r-lg" for="category">Category</label>
+                        <select class="rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline font-semibold placeholder:opacity-35 border-b-2" id="category" name="category" required>
+                            <option value="">Choose a category</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Work">Work</option>
+                            <option value="School">School</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
 
-            <!-- input container 1 -->
-            <div class="p-2 shadow-lg rounded-lg">
-            <label class="font-semibold bg-black text-white px-2 py-1 rounded-r-lg" for="task">Task Description</label>
-            <input class="appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline font-semibold placeholder:opacity-35 border-b-2" id="task" type="text"
-            name="task" placeholder="Enter task..." required>
-            </div>
-            
-            <!-- input container 2 -->
-            <div class="flex justify-center gap-2 py-5 px-1">
-            <div class="w-2/4">
-                <label class="font-semibold bg-black text-white px-2 py-1 rounded-r-lg" for="category">Category</label>
-                <select class="rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline font-semibold placeholder:opacity-35 border-b-2" id="category" name="category" required>
-                    <option value="">Choose a category</option>
-                    <option value="Personal">Personal</option>
-                    <option value="Work">Work</option>
-                    <option value="School">School</option>
-                    <option value="Others">Others</option>
-                </select>
-            </div>
+                    <div class="w-2/4">
+                        <label class="font-semibold bg-black text-white px-2 py-1 rounded-r-lg" for="task">Due Date</label>
+                        <input class="appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline font-semibold border-b-2" id="task" type="date" name="duedate" required/>
+                    </div>
+                </div>
 
-            <div class="w-2/4">
-                <label class="font-semibold bg-black text-white px-2 py-1 rounded-r-lg" for="task">Due Date</label>
-                <input class="appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline font-semibold border-b-2" id="task" type="date"
-                name="duedate" required/>
-            </div>
+                <!-- button container -->
+                <div class="flex justify-center gap-5 py-5">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-[100px]" type="submit">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        Add
+                    </button>
+                </div>
+            </form>
+        </div>
 
-            </div>
+        <!-- Main Task container -->
+        <div class="flex justify-center" id="main_task_container">
+        <div class="w-full md:w-1/2 bg-slate-50 px-2 md:px-5 mx-4 md:mx-0">
+        <!-- Task container -->
+        <div class="flex justify-center my-4 flex-col items-center gap-6  rounded-md">
+            <% tasks.map((task) => {%>
+                <div class="w-full bg-slate-200">
+                    <div class="shadow-md p-4 rounded-lg" id="tasks">
+                        <div class="w-full flex items-center">
+                            <input type="checkbox" name="taskcheck" class="border-none mr-2 checktask" id="<%= task.id %>" value="<%= task._id %>"/>
+                            <p class="font-semibold text-gray-600" id="task_name"><%= task.task %></p>
+                            <div class="ml-auto mr-4 bg-fuchsia-500 text-white py-2 px-4 font-semibold rounded-md shadow-md"><%= task.category %></div>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 font-semibold" id="task_date">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                Due Date: <%= task.duedate %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            <%})%>
+        </div>
 
-            <!-- button container -->
-            <div class="flex justify-center gap-5 py-5">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-[100px]" type="submit">
-                <i class="fa-solid fa-pen-to-square"></i>
-                Add</button>
-            <button class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-[100px]">
+        <!-- Delete form -->
+       
+        <!-- button container -->
+        <div class="flex justify-center gap-5 py-5">
+            <button id="deleteButton" class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-[100px]">
                 <i class="fa-solid fa-trash"></i>
-                <a href="">Delete</a></button>
-            </div>
+                Delete
+            </button>
+        </div>
+        </div>
+        </div>
 
-        </form>    
-    </div>
-
-    <!-- Task container -->
-    <div class="flex justify-center my-4 flex-col items-center gap-6">
-        <% tasks.map((task) => {%>
-        <div class="w-1/2">
-            <div class="shadow-md p-4 rounded-lg" id="tasks">
-                <div class="w-full flex items-center">
-                    <input type="checkbox" name="taskcheck" class="border-none mr-2 checktask" data-taskid="<%= task.id %>" id="<%= task.id %>"/>
-                    <p class="font-semibold text-gray-600"><%= task.task %></p>
-                    <div class="ml-auto mr-4 bg-fuchsia-500 text-white py-2 px-4 font-semibold rounded-full shadow-md"><%= task.category %></div>
-                </div>
-                <div>
-                    <p class="text-gray-500 font-semibold">
-                    <i class="fa-regular fa-calendar-days"></i>
-                    Due Date: <%= task.duedate %>
-                    </p>
-                </div>
-            </div>   
-        </div>  
-        <%})%>
-    </div>
-
-    <script src="./js/script.js"></script>
+        <script src="js/script.js"></script>
     </body>
 </html>
